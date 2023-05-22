@@ -23,30 +23,29 @@ struct APIResultView: View {
     var body: some View {
         List(apiResultViewModel.events) { item in
             VStack(alignment: .leading) {
-                Text("タイトル： \(item.title)")
+                Text(AppConst.Text.title + item.title)
                 Text(item.catchCopy)
-                Text("show more")
+                Text(AppConst.Text.showMore)
                     .foregroundColor(.blue)
                     .onTapGesture {
                         if let url = URL(string: item.eventURL) {
                             openURL(url)
                         }
-                        
                     }
             }
         }.onAppear {
             // 通信する
             apiResultViewModel.loadEventData(keyword: keyword)
         }
-        .alert("お知らせ", isPresented: $apiResultViewModel.isSearchAlert) {
+        .alert(AppConst.Text.notice, isPresented: $apiResultViewModel.isSearchAlert) {
             Button {
                 //画面を閉じる
                 dismiss()
             } label: {
-                Text("OK")
+                Text(AppConst.Text.ok)
             }
         } message: {
-            Text("入力したキーワードでは\n見つかりませんでした")
+            Text(AppConst.Text.notFoundKeyword)
         }
         
     }// body

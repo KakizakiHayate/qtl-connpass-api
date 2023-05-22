@@ -29,7 +29,7 @@ struct SearchView: View {
         NavigationStack {
             VStack {
                 HStack {
-                    TextField("キーワード入力", text: $keyword)
+                    TextField(AppConst.Text.inputKeyword, text: $keyword)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.bottom)
                     Button {
@@ -53,10 +53,10 @@ struct SearchView: View {
                 .navigationDestination(isPresented: $isListView) {
                     APIResultView(keyword: $keyword)
                 }
-                .alert("お知らせ", isPresented: $isSearchAlert) {
-                    Text("OK")
+                .alert(AppConst.Text.notice, isPresented: $isSearchAlert) {
+                    Text(AppConst.Text.ok)
                 } message: {
-                    Text("キーワードが入力されていません。")
+                    Text(AppConst.Text.inputEmptyKeyword)
                 }
                 
                 ZStack {
@@ -67,26 +67,26 @@ struct SearchView: View {
                                     .onTapGesture {
                                         log.checked.toggle()
                                     }
-                                Text(log.keyword ?? "")
+                                Text(log.keyword ?? AppConst.Text.empty)
                                     .onTapGesture {
                                         self.isLogSearchAlert.toggle()
                                         print("タップ！！！\(log.keyword)")
-                                        self.keyword = log.keyword ?? ""
+                                        self.keyword = log.keyword ?? AppConst.Text.empty
                                     }
-                                    .alert("確認", isPresented: $isLogSearchAlert) {
+                                    .alert(AppConst.Text.confirmation, isPresented: $isLogSearchAlert) {
                                         Button {
                                             print("\(keyword)")
                                             self.isListView.toggle()
                                         } label: {
-                                            Text("はい")
+                                            Text(AppConst.Text.yes)
                                         }
                                         Button {
                                             self.keyword = ""
                                         } label: {
-                                            Text("いいえ")
+                                            Text(AppConst.Text.no)
                                         }
                                     } message: {
-                                        Text("\(self.keyword)\n上記のキーワードで検索しますか？")
+                                        Text(self.keyword + AppConst.Text.aboveKeywordSearch)
                                     }
                                     .navigationDestination(isPresented: $isListView) {
                                         APIResultView(keyword: $keyword)
@@ -115,7 +115,6 @@ struct SearchView: View {
             }
             .padding()
             .onAppear {
-                print("黒服")
                 self.keyword = AppConst.Text.empty
             }
         }

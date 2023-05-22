@@ -11,17 +11,11 @@ import CoreData
 struct SearchView: View {
     // MARK: - Property Wrappers
     @State var keyword = ""
-    // MARK: - Property Wrappers
     @State private var isListView = false
-    // MARK: - Property Wrappers
     @State private var isSearchAlert = false
-    // MARK: - Property Wrappers
     @State private var isLogSearchAlert = false
-    // MARK: - Property Wrappers
     @StateObject var searchViewModel = SearchViewModel()
-    // MARK: - Property Wrappers
     @FetchRequest(sortDescriptors: []) var logs: FetchedResults<Log>
-    // MARK: - Property Wrappers
     @Environment(\.managedObjectContext) var moc
     
     // MARK: - body

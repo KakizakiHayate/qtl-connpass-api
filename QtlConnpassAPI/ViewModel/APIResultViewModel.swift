@@ -10,7 +10,6 @@ import Foundation
 class APIResultViewModel: ObservableObject {
     // MARK: - Property Wrappers
     @Published var events = [Events]()
-    // MARK: - Property Wrappers
     @Published var isSearchAlert = false
 
     // 通信

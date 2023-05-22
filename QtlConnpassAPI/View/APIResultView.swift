@@ -11,11 +11,8 @@ struct APIResultView: View {
     
     // MARK: - Property Wrappers
     @StateObject private var apiResultViewModel = APIResultViewModel()
-    // MARK: - Property Wrappers
     @Binding var keyword: String
-    // MARK: - Property Wrappers
     @Environment(\.openURL) private var openURL
-    // MARK: - Property Wrappers
     // 画面を閉じる
     @Environment(\.dismiss) private var dismiss
     

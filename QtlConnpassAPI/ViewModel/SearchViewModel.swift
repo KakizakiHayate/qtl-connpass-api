@@ -22,6 +22,7 @@ class SearchViewModel: ObservableObject {
             print("データの保存に失敗しました: \(error.localizedDescription)")
         }
     }
+    
     // CoreDataのデータ削除
     func deleteData(managedObjectContext: NSManagedObjectContext, logs: FetchedResults<Log>) {
         for log in logs {

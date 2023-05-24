@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct APIResultListTextView: View {
-    private let item: Events
+    // MARK: - Property Wrappers
     @Environment(\.openURL) private var openURL
+    
+    // MARK: - Properties
+    private let item: Events
     
     init(item: Events) {
         self.item = item

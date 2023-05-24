@@ -14,10 +14,12 @@ struct APIResultListTextView: View {
     // MARK: - Properties
     private let item: Events
     
+    // MARK: - Initialize
     init(item: Events) {
         self.item = item
     }
     
+    // MARK: - body
     var body: some View {
         VStack(alignment: .leading) {
             Text(AppConst.Text.title + item.title)
@@ -30,7 +32,7 @@ struct APIResultListTextView: View {
                     }
                 }
         }
-    }
-}
+    } // body
+} // view
 
 

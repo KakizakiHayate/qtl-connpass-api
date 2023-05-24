@@ -12,18 +12,18 @@ class APIResultViewModel: ObservableObject {
     @Published var events = [Events]()
     @Published var isSearchAlert = false
 
-    // 通信
+    /// 通信
     func loadEventData(keyword: String) {
         guard let url = URL(string: "https://connpass.com/api/v1/event/?keyword=\(keyword)"
         ) else {
             print("urlError::::")
             self.isSearchAlert = true
             return
-
         }
+        
         print(url)
+        
         let request = URLRequest(url: url)
-
 
         URLSession.shared.dataTask(with: request) { data, responce, error in
             if let data = data {

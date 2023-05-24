@@ -10,9 +10,11 @@ import SwiftUI
 struct SearchListTextView: View {
     // MARK: - Property Wrappers
     @State private var isLogSearchAlert = false
-    var log: FetchedResults<Log>.Element
     @Binding var keyword: String
     @Binding var isListView: Bool
+    
+    // MARK: - Properties
+    private var log: FetchedResults<Log>.Element
     
     init(isLogSearchAlert: Bool = false, log: FetchedResults<Log>.Element, keyword: Binding<String>, isListView: Binding<Bool>) {
         self.isLogSearchAlert = isLogSearchAlert

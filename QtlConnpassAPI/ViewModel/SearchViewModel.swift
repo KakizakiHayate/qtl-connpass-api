@@ -10,8 +10,7 @@ import CoreData
 import SwiftUI
 
 class SearchViewModel: ObservableObject {
-    
-    // CoreDataのデータ保存
+    /// CoreDataのデータ保存
     func saveData(managedObjectContext: NSManagedObjectContext, keyword: String) {
         let newItem = Log(context: managedObjectContext)
         newItem.keyword = keyword
@@ -23,7 +22,7 @@ class SearchViewModel: ObservableObject {
         }
     }
     
-    // CoreDataのデータ削除
+    /// CoreDataのデータ削除
     func deleteData(managedObjectContext: NSManagedObjectContext, logs: FetchedResults<Log>) {
         for log in logs {
             if log.checked {

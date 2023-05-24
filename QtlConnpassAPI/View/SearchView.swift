@@ -13,7 +13,6 @@ struct SearchView: View {
     @State var keyword = ""
     @State private var isListView = false
     @State private var isSearchAlert = false
-    
     @StateObject var searchViewModel = SearchViewModel()
     @FetchRequest(sortDescriptors: []) var logs: FetchedResults<Log>
     @Environment(\.managedObjectContext) var moc

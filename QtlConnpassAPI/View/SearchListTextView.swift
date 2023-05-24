@@ -16,6 +16,7 @@ struct SearchListTextView: View {
     // MARK: - Properties
     private var log: FetchedResults<Log>.Element
     
+    // MARK: - Initialize
     init(isLogSearchAlert: Bool = false, log: FetchedResults<Log>.Element, keyword: Binding<String>, isListView: Binding<Bool>) {
         self.isLogSearchAlert = isLogSearchAlert
         self.log = log
@@ -55,7 +56,6 @@ struct SearchListTextView: View {
                     APIResultView(keyword: $keyword)
                 }
         }
-    }
-}
-
+    } // body
+} // view
 

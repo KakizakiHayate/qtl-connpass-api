@@ -19,17 +19,7 @@ struct APIResultView: View {
     // MARK: - body
     var body: some View {
         List(apiResultViewModel.events) { item in
-            VStack(alignment: .leading) {
-                Text(AppConst.Text.title + item.title)
-                Text(item.catchCopy)
-                Text(AppConst.Text.showMore)
-                    .foregroundColor(.blue)
-                    .onTapGesture {
-                        if let url = URL(string: item.eventURL) {
-                            openURL(url)
-                        }
-                    }
-            }
+            APIResultListTextView(item: item)
         }.onAppear {
             // 通信する
             apiResultViewModel.loadEventData(keyword: keyword)

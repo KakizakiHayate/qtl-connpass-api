@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct QtlConnpassAPIApp: App {
+    // MARK: - Property Wrappers
     @StateObject private var dataController = DataController()
+    
+    // MARK: - body
     var body: some Scene {
         WindowGroup {
             SearchView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
-    }
-}
+    } // body
+} // app

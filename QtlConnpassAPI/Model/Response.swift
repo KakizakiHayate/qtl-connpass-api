@@ -8,5 +8,5 @@
 import Foundation
 
 struct Response: Decodable {
-    var events: [Events]
+    let events: [Events]
 }

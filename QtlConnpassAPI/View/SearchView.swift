@@ -82,8 +82,8 @@ struct SearchView: View {
                 self.keyword = AppConst.Text.empty
             }
         }
-    }// body
-}// view
+    } // body
+} // view
 
 // MARK: - Preview
 // 以下にpreviewのソースが入ります

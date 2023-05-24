@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct APIResultView: View {
-    
     // MARK: - Property Wrappers
     @StateObject private var apiResultViewModel = APIResultViewModel()
     @Binding var keyword: String
     @Environment(\.openURL) private var openURL
-    // 画面を閉じる
+    /// 画面を閉じる
     @Environment(\.dismiss) private var dismiss
     
     // MARK: - body
@@ -21,12 +20,11 @@ struct APIResultView: View {
         List(apiResultViewModel.events) { item in
             APIResultListTextView(item: item)
         }.onAppear {
-            // 通信する
+            /// 通信する
             apiResultViewModel.loadEventData(keyword: keyword)
         }
         .alert(AppConst.Text.notice, isPresented: $apiResultViewModel.isSearchAlert) {
             Button {
-                //画面を閉じる
                 dismiss()
             } label: {
                 Text(AppConst.Text.ok)
@@ -34,12 +32,11 @@ struct APIResultView: View {
         } message: {
             Text(AppConst.Text.notFoundKeyword)
         }
-        
-    }// body
-}// view
+    } // body
+} // view
 
 // MARK: - Preview
-//以下にpreviewのソースが入ります
+// 以下にpreviewのソースが入ります
 struct APIResultView_Previews: PreviewProvider {
     static var previews: some View {
         APIResultView(keyword: .constant(""))

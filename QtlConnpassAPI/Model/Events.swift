@@ -8,10 +8,10 @@
 import Foundation
 
 struct Events: Decodable, Identifiable {
-    var id = UUID()
-    var title: String
-    var catchCopy: String
-    var eventURL: String
+    let id = UUID()
+    let title: String
+    let catchCopy: String
+    let eventURL: String
     
     enum CodingKeys: String, CodingKey {
         case title = "title"

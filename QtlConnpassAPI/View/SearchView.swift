@@ -13,7 +13,7 @@ struct SearchView: View {
     @State var keyword = ""
     @State private var isListView = false
     @State private var isSearchAlert = false
-    @State private var isLogSearchAlert = false
+    
     @StateObject var searchViewModel = SearchViewModel()
     @FetchRequest(sortDescriptors: []) var logs: FetchedResults<Log>
     @Environment(\.managedObjectContext) var moc
@@ -56,36 +56,7 @@ struct SearchView: View {
                 ZStack {
                     List {
                         ForEach(logs) { log in
-                            HStack {
-                                Image(systemName: log.checked ? "checkmark.circle" : "circle")
-                                    .onTapGesture {
-                                        log.checked.toggle()
-                                    }
-                                Text(log.keyword ?? AppConst.Text.empty)
-                                    .onTapGesture {
-                                        self.isLogSearchAlert.toggle()
-                                        print("タップ！！！\(log.keyword)")
-                                        self.keyword = log.keyword ?? AppConst.Text.empty
-                                    }
-                                    .alert(AppConst.Text.confirmation, isPresented: $isLogSearchAlert) {
-                                        Button {
-                                            print("\(keyword)")
-                                            self.isListView.toggle()
-                                        } label: {
-                                            Text(AppConst.Text.yes)
-                                        }
-                                        Button {
-                                            self.keyword = ""
-                                        } label: {
-                                            Text(AppConst.Text.no)
-                                        }
-                                    } message: {
-                                        Text(self.keyword + AppConst.Text.aboveKeywordSearch)
-                                    }
-                                    .navigationDestination(isPresented: $isListView) {
-                                        APIResultView(keyword: $keyword)
-                                    }
-                            }
+                            SearchListTextView(log: log, keyword: $keyword, isListView: $isListView)
                         }
                     }
                     VStack {

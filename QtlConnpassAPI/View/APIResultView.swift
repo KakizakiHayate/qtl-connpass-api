@@ -20,8 +20,9 @@ struct APIResultView: View {
         List(apiResultViewModel.events) { item in
             APIResultListTextView(item: item)
         }.onAppear {
-            /// 通信する
-            apiResultViewModel.loadEventData(keyword: keyword)
+            Task {
+                try await apiResultViewModel.fetchAPIData(keyword: keyword)
+            }
         }
         .alert(AppConst.Text.notice, isPresented: $apiResultViewModel.isSearchAlert) {
             Button {

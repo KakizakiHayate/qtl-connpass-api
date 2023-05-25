@@ -11,36 +11,21 @@ class APIResultViewModel: ObservableObject {
     // MARK: - Property Wrappers
     @Published var events = [Events]()
     @Published var isSearchAlert = false
-
-    /// 通信
-    func loadEventData(keyword: String) {
-        guard let url = URL(string: "https://connpass.com/api/v1/event/?keyword=\(keyword)"
-        ) else {
-            print("urlError::::")
-            self.isSearchAlert = true
-            return
-        }
+    
+    ///通信
+    func fetchAPIData(keyword: String) async throws {
         
-        print(url)
-        
-        let request = URLRequest(url: url)
-
-        URLSession.shared.dataTask(with: request) { data, responce, error in
-            if let data = data {
-                //Json -> Swift
-                let decoder = JSONDecoder()
-                guard let decodedEvents = try? decoder.decode(Response.self, from: data) else {
-                    print("Json decode エラー")
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    self.events = decodedEvents.events
-                }
-            } else {
-                debugPrint(error ?? "Unknown error")
+        if let url = URL(string: "https://connpass.com/api/v1/event/?keyword=\(keyword)") {
+            print(url)
+            let (data, _) = try await URLSession.shared.data(from: url)
+            print(data)
+            let eventsObject = try JSONDecoder().decode(Response.self, from: data)
+            DispatchQueue.main.async {
+                self.events = eventsObject.events
             }
-        }.resume()
+        } else {
+            print("decode error")
+            throw FetcherError.badCode
+        }
     }
-
 }

@@ -53,11 +53,7 @@ struct SearchView: View {
                 }
                 
                 ZStack {
-                    List {
-                        ForEach(logs) { log in
-                            SearchListTextView(log: log, keyword: $keyword, isListView: $isListView)
-                        }
-                    }
+                    SearchListTextView(keyword: $keyword, isListView: $isListView)
                     VStack {
                         Spacer()
                         HStack {
